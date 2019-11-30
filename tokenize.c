@@ -14,7 +14,7 @@ void error_at ( char *input, char *loc, char *fmt, ... )
     int pos = loc -input;
 
     fprintf ( stderr, "%s\n", input );
-    fprintf ( stderr, "%s", pos, " " );
+    fprintf ( stderr, "%*s", pos, " " );
     fprintf ( stderr, "^ " );
     vfprintf ( stderr, fmt, ap );
     fprintf ( stderr, "\n" );
@@ -57,6 +57,7 @@ Token *tokenize ( char *p )
             cur->val = strtol ( p, &p, 10 );
             continue;
         }
+
         error_at ( input, p, "tokenize failed" );
     }
 
